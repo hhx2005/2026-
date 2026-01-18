@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🧧 2026 莆田家族聚会整活指南</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: #fafaf9;
+            color: #44403c;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            height: 300px;
+            margin: 0 auto;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .category-btn.active {
+            background-color: #dc2626;
+            color: white;
+            border-color: #dc2626;
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d6d3d1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a8a29e;
+        }
+    </style>
+</head>
+<body class="bg-stone-50 min-h-screen flex flex-col">
+
+    <header class="bg-red-700 text-stone-50 shadow-lg sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+            <div>
+                <h1 class="text-xl md:text-2xl font-bold flex items-center gap-2">
+                    <span>🧧</span> 2026 莆田家族聚会策划案
+                </h1>
+                <p class="text-xs text-red-100 opacity-90">总策划：hhx | 内部专用</p>
+            </div>
+            <button onclick="scrollToSection('game-browser')" class="bg-amber-400 hover:bg-amber-300 text-red-900 font-bold py-2 px-4 rounded-full text-sm transition shadow-sm">
+                查看游戏库
+            </button>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        <section class="max-w-6xl mx-auto px-4 py-8 md:py-12">
+            <div class="bg-white rounded-2xl shadow-sm border border-stone-200 p-6 md:p-8 flex flex-col md:flex-row gap-8 items-center">
+                <div class="md:w-2/3">
+                    <div class="inline-block bg-red-100 text-red-800 text-xs font-bold px-3 py-1 rounded-full mb-4">执行目标</div>
+                    <h2 class="text-3xl font-bold text-stone-800 mb-4">放下手机，玩转新年！</h2>
+                    <p class="text-stone-600 mb-6 leading-relaxed">
+                        小姑，这是我为你整理的<strong>20个聚会互动项目</strong>。
+                        咱们家这次主打老少皆宜，不管是长辈还是年轻人都能玩得开心。
+                        内容已经按照环节分好了，到时候咱们看气氛选就行！
+                        <br><br>
+                        <em>祝大家玩得尽兴，红包拿得开心！🧧</em>
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <div class="bg-stone-100 px-4 py-2 rounded-lg border-l-4 border-amber-500">
+                            <span class="block text-xs text-stone-500">项目总计</span>
+                            <span class="text-xl font-bold text-stone-800">20 个</span>
+                        </div>
+                        <div class="bg-stone-100 px-4 py-2 rounded-lg border-l-4 border-red-500">
+                            <span class="block text-xs text-stone-500">推荐氛围</span>
+                            <span class="text-xl font-bold text-stone-800">火爆/活跃</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-1/3 w-full flex flex-col items-center justify-center bg-stone-50 rounded-xl p-4 border border-stone-100">
+                    <h3 class="text-sm font-bold text-stone-500 mb-2 tracking-wide">趣味性分布预测</h3>
+                    <div class="chart-container" style="height: 250px;">
+                        <canvas id="vibeChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="game-browser" class="max-w-6xl mx-auto px-4 py-4">
+            <div class="mb-8">
+                <h2 class="text-2xl font-bold text-stone-800 mb-2">🎮 互动项目一览</h2>
+                <div class="flex flex-wrap gap-2 mb-8" id="filters">
+                    <button class="category-btn active px-5 py-2 rounded-full border border-stone-300 text-stone-600 bg-white font-medium transition" data-filter="all">全部</button>
+                    <button class="category-btn px-5 py-2 rounded-full border border-stone-300 text-stone-600 bg-white font-medium transition" data-filter="sit">🍵 暖场</button>
+                    <button class="category-btn px-5 py-2 rounded-full border border-stone-300 text-stone-600 bg-white font-medium transition" data-filter="active">🏃 竞技</button>
+                    <button class="category-btn px-5 py-2 rounded-full border border-stone-300 text-stone-600 bg-white font-medium transition" data-filter="skill">🎯 技巧</button>
+                    <button class="category-btn px-5 py-2 rounded-full border border-stone-300 text-stone-600 bg-white font-medium transition" data-filter="luck">🧧 红包</button>
+                </div>
+            </div>
+
+            <div id="games-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+        </section>
+
+        <section class="bg-stone-900 text-white py-16 mt-8">
+            <div class="max-w-4xl mx-auto px-4 text-center">
+                <h2 class="text-3xl font-bold mb-4 text-amber-400">🎲 抽个签？</h2>
+                <div class="bg-stone-800 p-8 rounded-2xl border border-stone-700 shadow-2xl inline-block w-full max-w-lg">
+                    <div id="random-display" class="text-4xl font-bold mb-2 min-h-[60px] flex items-center justify-center">???</div>
+                    <button id="spin-btn" class="bg-red-600 hover:bg-red-500 text-white text-lg font-bold py-3 px-8 rounded-full shadow-lg transition">随机点名</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="max-w-6xl mx-auto px-4 py-12 mb-12">
+            <h2 class="text-2xl font-bold text-stone-800 mb-6">📦 物资准备</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white rounded-xl shadow-sm border border-stone-200 p-6">
+                    <h3 class="text-lg font-bold text-stone-800 mb-4 border-b pb-2">道具清单</h3>
+                    <ul class="space-y-3" id="props-list"></ul>
+                </div>
+                <div class="bg-white rounded-xl shadow-sm border border-stone-200 p-6">
+                    <h3 class="text-lg font-bold text-stone-800 mb-4 border-b pb-2">温馨提示</h3>
+                    <p class="text-stone-600 text-sm">建议准备一些小礼物作为奖金池，调动长辈参与积极性。部分项目建议提前录像，作为珍贵的家族回忆素材。</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-stone-800 text-stone-500 py-6 text-center text-xs">
+        <p>2026 家族聚会组委会 版权所有</p>
+    </footer>
+
+    <script>
+        const gamesData = [
+            { id: 1, title: "听歌识曲", category: "sit", desc: "前奏猜歌，两代人PK。", highlight: "80年代金曲 vs 00后流行乐。", tags: ["音乐"] },
+            { id: 2, title: "莆田话版谁是卧底", category: "sit", desc: "全程必须使用方言描述词语。", highlight: "方言退化者的受难日。", tags: ["方言"] },
+            { id: 3, title: "害你在心口难开", category: "sit", desc: "引诱对方说出头上的禁词。", highlight: "坑亲戚的最佳时刻。", tags: ["博弈"] },
+            { id: 4, title: "逢7过", category: "sit", desc: "数字游戏，输了惩罚。", highlight: "大脑过载现场。", tags: ["反应"] },
+            { id: 5, title: "你划我猜", category: "active", desc: "戴耳机看口型传话。", highlight: "咆哮式交流，笑点密集。", tags: ["默契"] },
+            { id: 6, title: "抢红包大比拼", category: "active", desc: "听口令抢钱。", highlight: "手速决定压岁钱。", tags: ["手速"] },
+            { id: 7, title: "正话反说", category: "active", desc: "动作完全相反操作。", highlight: "手脚不协调的现场。", tags: ["搞笑"] },
+            { id: 8, title: "抖抖便利贴", category: "active", desc: "不准动手，靠抖动掉贴纸。", highlight: "全场群魔乱舞。", tags: ["体能"] },
+            { id: 9, title: "纸杯吹球", category: "skill", desc: "水杯传球比赛。", highlight: "湿身预警。", tags: ["肺活量"] },
+            { id: 10, title: "蒙眼打气球", category: "skill", desc: "蒙眼转圈打红包。", highlight: "原地迷失方向。", tags: ["空间感"] },
+            { id: 11, title: "传统投壶/套圈", category: "skill", desc: "经典地摊式套礼品。", highlight: "长辈技术展示局。", tags: ["经典"] },
+            { id: 12, title: "面粉传情", category: "skill", desc: "嘴叼扑克牌传粉。", highlight: "全家变大花脸。", tags: ["拍照"] },
+            { id: 13, title: "蒙眼铲钱", category: "luck", desc: "眼罩铲钱，多少拿多少。", highlight: "年度最火游戏。", tags: ["硬核"] },
+            { id: 14, title: "滚罐子赢钱", category: "luck", desc: "滚动易拉罐定位金额。", highlight: "运气与力量控制。", tags: ["竞技"] },
+            { id: 15, title: "幸运红绳", category: "luck", desc: "抽绳定奖励或惩罚。", highlight: "心跳的感觉。", tags: ["看脸"] },
+            { id: 16, title: "芥末面包大挑战", category: "luck", desc: "盲选芥末味面包。", highlight: "天选之子的表情包。", tags: ["整人"] }
+        ];
+
+        const propsList = ["大号铲子", "乒乓球", "纸杯", "眼罩", "便利贴", "扑克牌", "面粉", "气球", "红绳", "芥末", "降噪耳机"];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderChart();
+            renderGames('all');
+            renderProps();
+            setupInteractions();
+        });
+
+        function renderChart() {
+            const ctx = document.getElementById('vibeChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: ['智力', '体能', '运气', '趣味', '收益'],
+                    datasets: [{
+                        label: '综合评分',
+                        data: [70, 60, 90, 95, 85],
+                        backgroundColor: 'rgba(220, 38, 38, 0.2)',
+                        borderColor: '#dc2626',
+                        pointBackgroundColor: '#fbbf24'
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    scales: { r: { angleLines: { display: false }, ticks: { display: false }, min: 0, max: 100 } },
+                    plugins: { legend: { display: false } }
+                }
+            });
+        }
+
+        function renderGames(filter) {
+            const grid = document.getElementById('games-grid');
+            grid.innerHTML = '';
+            const filtered = filter === 'all' ? gamesData : gamesData.filter(g => g.category === filter);
+            filtered.forEach(game => {
+                const card = document.createElement('div');
+                card.className = 'bg-white rounded-xl p-5 shadow-sm border border-stone-100 card-hover transition flex flex-col h-full';
+                card.innerHTML = `
+                    <div class="flex justify-between mb-3"><span class="text-xs font-bold px-2 py-1 rounded bg-stone-100">${game.category.toUpperCase()}</span></div>
+                    <h3 class="text-lg font-bold text-stone-800 mb-2">${game.title}</h3>
+                    <p class="text-stone-500 text-sm mb-4">${game.desc}</p>
+                    <div class="bg-amber-50 p-2 rounded text-xs text-amber-800 mt-auto">看点: ${game.highlight}</div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function renderProps() {
+            const list = document.getElementById('props-list');
+            propsList.forEach(item => {
+                const li = document.createElement('li');
+                li.className = 'flex items-center gap-3 p-2 hover:bg-stone-50 rounded cursor-pointer';
+                li.innerHTML = `<span class="check">⬜</span><span class="text-stone-700">${item}</span>`;
+                li.onclick = function() {
+                    const check = this.querySelector('.check');
+                    check.textContent = check.textContent === '⬜' ? '✅' : '⬜';
+                    this.classList.toggle('opacity-40');
+                };
+                list.appendChild(li);
+            });
+        }
+
+        function setupInteractions() {
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.onclick = (e) => {
+                    document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+                    e.target.classList.add('active');
+                    renderGames(e.target.dataset.filter);
+                };
+            });
+
+            document.getElementById('spin-btn').onclick = () => {
+                const display = document.getElementById('random-display');
+                let count = 0;
+                const timer = setInterval(() => {
+                    display.textContent = gamesData[Math.floor(Math.random()*gamesData.length)].title;
+                    count++;
+                    if(count > 15) {
+                        clearInterval(timer);
+                        display.classList.add('text-amber-500');
+                    }
+                }, 60);
+            };
+        }
+
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
